@@ -26,8 +26,6 @@ namespace MISA.Infrastructure
             var customers = dbConnection.Query<Customer>("Proc_GetCustomers", commandType: CommandType.Text);
             //Trả về dữ liệu
             return customers;
-
-
         }
         //Lấy thông tin khách hàng theo mã khách hàng
 

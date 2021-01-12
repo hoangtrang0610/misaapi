@@ -10,6 +10,8 @@ using System.Data.SqlClient;
 using MySql.Data.MySqlClient;
 using MISA.ApplicationCore;
 using MISA.Infrastructure.Models;
+using MISA.Entity;
+using MISA.ApplicationCore.Interfaces;
 
 namespace MISA.CukCuk.Api.Controllers
 {
@@ -17,6 +19,11 @@ namespace MISA.CukCuk.Api.Controllers
     [ApiController]
     public class CustomersController : ControllerBase
     {
+        ICustomerService _customerService;
+        public CustomersController(ICustomerService customerService)
+        {
+            _customerService = customerService;
+        }
         /// <summary>
         /// lấy toàn bộ khách hàng
         /// </summary>
@@ -25,8 +32,7 @@ namespace MISA.CukCuk.Api.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var customerService = new CustomerService();
-            var customers = customerService.GetCustomers();
+            var customers = _customerService.GetCustomers();
             return Ok(customers);
         }
 
@@ -54,13 +60,12 @@ namespace MISA.CukCuk.Api.Controllers
         [HttpPost]
         public IActionResult Post(Customer customer)
         {
-            var customerService = new CustomerService();
-            var serviceResult = customerService.InsertCustomer(customer);
-            if (serviceResult.MISACode == 900)
+            var serviceResult = _customerService.AddCustomer(customer);
+            if (serviceResult.MISACode == MISACode.NotValid)
             {
                 return BadRequest(serviceResult.Data);
             }
-            else if (serviceResult.MISACode == 100 && (int)serviceResult.Data > 0)
+            else if (serviceResult.MISACode == MISACode.IsValid && (int)serviceResult.Data > 0)
             {
                 return Created("abc", customer);
             }

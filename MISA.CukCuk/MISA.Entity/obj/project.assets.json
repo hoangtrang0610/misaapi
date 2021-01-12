@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\httrang\\Desktop\\MISA.CukCuk.Api\\MISA.CukCuk\\MISA.Entity\\MISA.Entity.csproj",
+      "projectUniqueName": "C:\\Users\\httrang\\Desktop\\misaapi\\MISA.CukCuk\\MISA.Entity\\MISA.Entity.csproj",
       "projectName": "MISA.Entity",
-      "projectPath": "C:\\Users\\httrang\\Desktop\\MISA.CukCuk.Api\\MISA.CukCuk\\MISA.Entity\\MISA.Entity.csproj",
+      "projectPath": "C:\\Users\\httrang\\Desktop\\misaapi\\MISA.CukCuk\\MISA.Entity\\MISA.Entity.csproj",
       "packagesPath": "C:\\Users\\httrang\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\httrang\\Desktop\\MISA.CukCuk.Api\\MISA.CukCuk\\MISA.Entity\\obj\\",
+      "outputPath": "C:\\Users\\httrang\\Desktop\\misaapi\\MISA.CukCuk\\MISA.Entity\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\httrang\\AppData\\Roaming\\NuGet\\NuGet.Config",
