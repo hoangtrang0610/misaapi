@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "CVlgkbz0Gf+qvP2RIaMInpJvzOm3q6K9jv4vdfr9cq0z/P+JEp5zdVt/DkFwNIzQwIs/4XK+k2r3WJWsRfuY9Q==",
+  "dgSpecHash": "f+ZDwEVCDP0e7gEzkK9OpUy60IQozZGBL4/J+6WPELKKXRAVgOkU+r74JIyiCcXe7mxbulj8qDynM7Nk4OLQKg==",
   "success": true,
   "projectFilePath": "C:\\Users\\httrang\\Desktop\\misaapi\\MISA.CukCuk\\MISA.Infrastructure\\MISA.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -11,6 +11,8 @@
     "C:\\Users\\httrang\\.nuget\\packages\\k4os.compression.lz4.streams\\1.1.11\\k4os.compression.lz4.streams.1.1.11.nupkg.sha512",
     "C:\\Users\\httrang\\.nuget\\packages\\k4os.hash.xxhash\\1.0.6\\k4os.hash.xxhash.1.0.6.nupkg.sha512",
     "C:\\Users\\httrang\\.nuget\\packages\\microsoft.csharp\\4.0.1\\microsoft.csharp.4.0.1.nupkg.sha512",
+    "C:\\Users\\httrang\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\5.0.0\\microsoft.extensions.configuration.abstractions.5.0.0.nupkg.sha512",
+    "C:\\Users\\httrang\\.nuget\\packages\\microsoft.extensions.primitives\\5.0.0\\microsoft.extensions.primitives.5.0.0.nupkg.sha512",
     "C:\\Users\\httrang\\.nuget\\packages\\microsoft.netcore.platforms\\3.1.0\\microsoft.netcore.platforms.3.1.0.nupkg.sha512",
     "C:\\Users\\httrang\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
     "C:\\Users\\httrang\\.nuget\\packages\\microsoft.win32.primitives\\4.0.1\\microsoft.win32.primitives.4.0.1.nupkg.sha512",

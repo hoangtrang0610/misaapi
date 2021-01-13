@@ -17,6 +17,11 @@ namespace MISA.Infrastructure
             throw new NotImplementedException();
         }
 
+        public Customer GetCustomerByCode(string customerCode)
+        {
+            throw new NotImplementedException();
+        }
+
         public Customer GetCustomerById(Guid customerId)
         {
             throw new NotImplementedException();
