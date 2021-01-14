@@ -1584,14 +1584,14 @@
           "lib/netstandard1.3/System.Xml.XPath.XmlDocument.dll": {}
         }
       },
-      "MISA.Entity/1.0.0": {
+      "MISA.ApplicationCore/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "compile": {
-          "bin/placeholder/MISA.Entity.dll": {}
+          "bin/placeholder/MISA.ApplicationCore.dll": {}
         },
         "runtime": {
-          "bin/placeholder/MISA.Entity.dll": {}
+          "bin/placeholder/MISA.ApplicationCore.dll": {}
         }
       }
     }
@@ -5714,16 +5714,16 @@
         "system.xml.xpath.xmldocument.nuspec"
       ]
     },
-    "MISA.Entity/1.0.0": {
+    "MISA.ApplicationCore/1.0.0": {
       "type": "project",
-      "path": "../MISA.Entity/MISA.Entity.csproj",
-      "msbuildProject": "../MISA.Entity/MISA.Entity.csproj"
+      "path": "../MISA.ApplicationCore/MISA.ApplicationCore.csproj",
+      "msbuildProject": "../MISA.ApplicationCore/MISA.ApplicationCore.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Dapper >= 2.0.78",
-      "MISA.Entity >= 1.0.0",
+      "MISA.ApplicationCore >= 1.0.0",
       "Microsoft.Extensions.Configuration.Abstractions >= 5.0.0",
       "MySql.Data >= 8.0.22"
     ]
@@ -5755,8 +5755,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\httrang\\Desktop\\misaapi\\MISA.CukCuk\\MISA.Entity\\MISA.Entity.csproj": {
-              "projectPath": "C:\\Users\\httrang\\Desktop\\misaapi\\MISA.CukCuk\\MISA.Entity\\MISA.Entity.csproj"
+            "C:\\Users\\httrang\\Desktop\\misaapi\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj": {
+              "projectPath": "C:\\Users\\httrang\\Desktop\\misaapi\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj"
             }
           }
         }

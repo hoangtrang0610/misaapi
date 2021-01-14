@@ -1,27 +1,24 @@
-﻿using MISA.Infrastructure.Models;
+﻿
+using MISA.ApplicationCore.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MISA.Infrastructure
+namespace MISA.ApplicationCore.Interfaces
 {
     /// <summary>
     /// Interface danh mục khách hàng
     /// </summary>
     /// CreatedBy: HTTrang(13/01/2021)
     
-    public interface ICustomerRepository
+    public interface ICustomerRepository:IBaseRepository<Customer>
     {
         /// <summary>
-        /// Lấy danh sách khách hàng
+        /// Lấy thông tin khách hàng theo mã khách hàng
         /// </summary>
         /// <returns>Dánh sách khách hàng</returns>
         /// CreatedBy: HTTrang(13/01/2021)
-        IEnumerable<Customer> GetCustomers();
-        Customer GetCustomerById(Guid customerId);
-        int AddCustomer(Customer customer);
-        int UpdateCustomer(Customer customer);
-        int DeleteCustomer(Guid customerId);
+      
         Customer GetCustomerByCode(string customerCode);
     }
 }

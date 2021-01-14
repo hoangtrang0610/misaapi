@@ -1,11 +1,10 @@
 ﻿using MISA.ApplicationCore.Entities;
 using MISA.ApplicationCore.Interfaces;
-using MISA.Infrastructure.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace MISA.ApplicationCore
+namespace MISA.ApplicationCore.Services
 {
     class CustomerServiceV2 : ICustomerService
     {

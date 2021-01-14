@@ -1732,25 +1732,11 @@
       "MISA.ApplicationCore/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
-        "dependencies": {
-          "MISA.Entity": "1.0.0",
-          "MISA.Infrastructure": "1.0.0"
-        },
         "compile": {
           "bin/placeholder/MISA.ApplicationCore.dll": {}
         },
         "runtime": {
           "bin/placeholder/MISA.ApplicationCore.dll": {}
-        }
-      },
-      "MISA.Entity/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
-        "compile": {
-          "bin/placeholder/MISA.Entity.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/MISA.Entity.dll": {}
         }
       },
       "MISA.Infrastructure/1.0.0": {
@@ -1758,7 +1744,7 @@
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "Dapper": "2.0.78",
-          "MISA.Entity": "1.0.0",
+          "MISA.ApplicationCore": "1.0.0",
           "Microsoft.Extensions.Configuration.Abstractions": "5.0.0",
           "MySql.Data": "8.0.22"
         },
@@ -6153,11 +6139,6 @@
       "path": "../MISA.ApplicationCore/MISA.ApplicationCore.csproj",
       "msbuildProject": "../MISA.ApplicationCore/MISA.ApplicationCore.csproj"
     },
-    "MISA.Entity/1.0.0": {
-      "type": "project",
-      "path": "../MISA.Entity/MISA.Entity.csproj",
-      "msbuildProject": "../MISA.Entity/MISA.Entity.csproj"
-    },
     "MISA.Infrastructure/1.0.0": {
       "type": "project",
       "path": "../MISA.Infrastructure/MISA.Infrastructure.csproj",
@@ -6168,7 +6149,7 @@
     "net5.0": [
       "Dapper >= 2.0.78",
       "MISA.ApplicationCore >= 1.0.0",
-      "MISA.Entity >= 1.0.0",
+      "MISA.Infrastructure >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 5.0.0",
       "Microsoft.AspNetCore.Authentication.OpenIdConnect >= 5.0.0",
       "MySql.Data >= 8.0.22",
@@ -6206,8 +6187,8 @@
             "C:\\Users\\httrang\\Desktop\\misaapi\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj": {
               "projectPath": "C:\\Users\\httrang\\Desktop\\misaapi\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj"
             },
-            "C:\\Users\\httrang\\Desktop\\misaapi\\MISA.CukCuk\\MISA.Entity\\MISA.Entity.csproj": {
-              "projectPath": "C:\\Users\\httrang\\Desktop\\misaapi\\MISA.CukCuk\\MISA.Entity\\MISA.Entity.csproj"
+            "C:\\Users\\httrang\\Desktop\\misaapi\\MISA.CukCuk\\MISA.Infrastructure\\MISA.Infrastructure.csproj": {
+              "projectPath": "C:\\Users\\httrang\\Desktop\\misaapi\\MISA.CukCuk\\MISA.Infrastructure\\MISA.Infrastructure.csproj"
             }
           }
         }

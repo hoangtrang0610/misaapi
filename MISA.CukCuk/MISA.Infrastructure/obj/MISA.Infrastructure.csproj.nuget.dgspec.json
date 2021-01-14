@@ -4,14 +4,14 @@
     "C:\\Users\\httrang\\Desktop\\misaapi\\MISA.CukCuk\\MISA.Infrastructure\\MISA.Infrastructure.csproj": {}
   },
   "projects": {
-    "C:\\Users\\httrang\\Desktop\\misaapi\\MISA.CukCuk\\MISA.Entity\\MISA.Entity.csproj": {
+    "C:\\Users\\httrang\\Desktop\\misaapi\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\httrang\\Desktop\\misaapi\\MISA.CukCuk\\MISA.Entity\\MISA.Entity.csproj",
-        "projectName": "MISA.Entity",
-        "projectPath": "C:\\Users\\httrang\\Desktop\\misaapi\\MISA.CukCuk\\MISA.Entity\\MISA.Entity.csproj",
+        "projectUniqueName": "C:\\Users\\httrang\\Desktop\\misaapi\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj",
+        "projectName": "MISA.ApplicationCore",
+        "projectPath": "C:\\Users\\httrang\\Desktop\\misaapi\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj",
         "packagesPath": "C:\\Users\\httrang\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\httrang\\Desktop\\misaapi\\MISA.CukCuk\\MISA.Entity\\obj\\",
+        "outputPath": "C:\\Users\\httrang\\Desktop\\misaapi\\MISA.CukCuk\\MISA.ApplicationCore\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\httrang\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -82,8 +82,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\httrang\\Desktop\\misaapi\\MISA.CukCuk\\MISA.Entity\\MISA.Entity.csproj": {
-                "projectPath": "C:\\Users\\httrang\\Desktop\\misaapi\\MISA.CukCuk\\MISA.Entity\\MISA.Entity.csproj"
+              "C:\\Users\\httrang\\Desktop\\misaapi\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj": {
+                "projectPath": "C:\\Users\\httrang\\Desktop\\misaapi\\MISA.CukCuk\\MISA.ApplicationCore\\MISA.ApplicationCore.csproj"
               }
             }
           }
