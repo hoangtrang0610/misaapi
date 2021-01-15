@@ -1,3 +1,4 @@
+﻿using Dapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +10,7 @@ using Microsoft.OpenApi.Models;
 using MISA.ApplicationCore;
 using MISA.ApplicationCore.Interfaces;
 using MISA.ApplicationCore.Services;
+//using MISA.CukCuk.Api.Middwares;
 using MISA.Infrastructure;
 using System;
 using System.Collections.Generic;
@@ -30,6 +32,11 @@ namespace MISA.CukCuk.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            //add Midderware xửa lý việc mapping data với kiểu dữ liệu Guid
+            //SqlMapper.AddTypeHandler(new MySqlGuidTypeHandler());
+            //SqlMapper.RemoveTypeMap(typeof(Guid));
+            //SqlMapper.RemoveTypeMap(typeof(Guid?));
+            //config DI
             services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseReponsitory<>));
             services.AddScoped<ICustomerRepository, CustomerRepository>();

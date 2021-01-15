@@ -9,28 +9,36 @@ namespace MISA.ApplicationCore.Services
 {
     public class CustomerService:BaseService<Customer>, ICustomerService
     {
-        IBaseRepository<Customer> _customerRepository;
+        IBaseRepository<Customer> _baseRepository;
+        ICustomerRepository _customerRepository;
         #region Constructor
-        public CustomerService(IBaseRepository<Customer> customerRepository) : base(customerRepository)
+        public CustomerService(IBaseRepository<Customer> baseRepository, ICustomerRepository customerRepository) : base(baseRepository)
         {
+            _baseRepository = baseRepository;
             _customerRepository = customerRepository;
         }
 
-        public override  int Add(Customer entity)
-        {
-            //validate thông tin
-            var isValid = true;
-            //login validate:
-            if(isValid == true)
-            {
-                var res = _customerRepository.Add(entity);
-                return res;
-            }
-            else
-            {
-                return 0;
-            }
-        }
+        //public override  int Add(Customer entity)
+        //{
+        //    //validate thông tin
+        //    var isValid = true;
+        //    //1 check mã khách hàng
+        //    var customerDuplicate = _customerRepository.GetCustomerByCode(entity.CustomerCode);
+        //    if(customerDuplicate != null)
+        //    {
+        //        isValid = false;
+        //    }
+        //    //login validate:
+        //    if(isValid == true)
+        //    {
+        //        var res = base.Add(entity);
+        //        return res;
+        //    }
+        //    else
+        //    {
+        //        return 0;
+        //    }
+        //}
 
         //Thêm mới khách hàng
         //public ServiceResult AddCustomer(Customer customer)

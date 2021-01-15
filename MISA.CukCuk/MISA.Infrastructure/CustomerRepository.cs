@@ -10,8 +10,17 @@ using System.Linq;
 
 namespace MISA.Infrastructure
 {
-    public class CustomerRepository : ICustomerRepository
+    public class CustomerRepository :BaseReponsitory<Customer>, ICustomerRepository
     {
-        
+        public CustomerRepository(IConfiguration configuration) : base(configuration)
+        {
+
+        }
+
+        public Customer GetCustomerByCode(string customerCode)
+        {
+            var customerDuplicate = _dbConnection.Query<Customer>($"select * from customer where CustomerCode = '{customerCode}'", commandType: CommandType.Text).FirstOrDefault();
+            return customerDuplicate;
+        }
     }
 }

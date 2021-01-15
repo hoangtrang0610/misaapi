@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -8,8 +9,8 @@ namespace MISA.ApplicationCore.Entities
     /// <summary>
     /// Khách hàng
     /// </summary>
-    /// CreatedBy HTTrrang(08/01/2021)
-    public class Customer
+    /// CreatedBy HTTrrang(08/01/2021) 
+    public class Customer : BaseEntity
     {
         #region declare
 
@@ -26,16 +27,20 @@ namespace MISA.ApplicationCore.Entities
         /// <summary>
         /// khóa chính
         /// </summary>
+        [PrimaryKey]
         public Guid CustomerId { get; set; }
 
         /// <summary>
         /// Mã khách hàng
         /// </summary>
+        [Requied]
+        [DisplayName("Mã khách hàng")]
         public string CustomerCode { get; set; }
 
         /// <summary>
         /// Họ và tên
         /// </summary>
+        [DisplayName("Họ và tên")]
         public string FullName { get; set; }
 
         /// <summary>

@@ -1,21 +1,25 @@
 ﻿using Dapper;
 using Microsoft.Extensions.Configuration;
+using MISA.ApplicationCore.Entities;
+using MISA.ApplicationCore.Enums;
 using MISA.ApplicationCore.Interfaces;
 using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
+using System.Reflection;
 using System.Text;
 
 namespace MISA.Infrastructure
 {
-    public class BaseReponsitory<TEntity> : IBaseRepository<TEntity>
+    public class BaseReponsitory<TEntity> : IBaseRepository<TEntity> where TEntity:BaseEntity
     {
         #region DECLARE
         IConfiguration _configuration;
         string _connectionString = string.Empty;
-        IDbConnection _dbConnection = null;
-        string _tableName;
+        protected IDbConnection _dbConnection = null;
+        protected string _tableName;
         #endregion
         public BaseReponsitory(IConfiguration configuration)
         {
@@ -58,9 +62,13 @@ namespace MISA.Infrastructure
             throw new NotImplementedException();
         }
 
-        public int Update(TEntity customer)
+        public int Update(TEntity entity)
         {
-            throw new NotImplementedException();
+            //Khởi tạo kết nối với Db:
+            var parameters = MappingDbType(entity);
+            //Thực thi commandText
+            var rowAffects = _dbConnection.Execute($"Proc_Update{_tableName}", parameters, commandType: CommandType.StoredProcedure);
+            return rowAffects;
         }
         /// <summary>
         /// map kiểu dữ liệu
@@ -81,12 +89,37 @@ namespace MISA.Infrastructure
                 {
                     parameters.Add($"@{propertyName}", propertyValue, DbType.String);
                 }
+                else if(propertyType == typeof(bool) || propertyType == typeof(bool?)){
+                    var dbValue = ((bool)propertyValue == true ? 1 : 0);
+                    parameters.Add($"@{propertyName}", propertyValue, DbType.Int32);
+
+                }
                 else
                 {
                     parameters.Add($"@{propertyName}", propertyValue);
                 }
             }
             return parameters;
+        }
+
+        public int GetEntityBySpces(TEntity entity, System.Reflection.PropertyInfo propertyName)
+        {
+            throw new NotImplementedException();
+        }
+
+        public TEntity GetEntityByProperty(TEntity entity, PropertyInfo property)
+        {
+            var propertyName = property.Name;
+            var propertyValue = property.GetValue(entity);
+            var keyValue = entity.GetType().GetProperty($"{_tableName}Id").GetValue(entity);
+            var query = string.Empty;
+            if (entity.EntityState == EntityState.AddNew)
+                query = $"select *from {_tableName} where {propertyName} = '{propertyValue}'";
+            else if (entity.EntityState == EntityState.Update)
+                query = $"select *from {_tableName} where {propertyName} = '{propertyValue}' and {_tableName}Id <> '{keyValue}'";
+            else return null;
+            var entityReturn = _dbConnection.Query<TEntity>(query, commandType: CommandType.Text).FirstOrDefault();
+            return entityReturn;
         }
     }
 }

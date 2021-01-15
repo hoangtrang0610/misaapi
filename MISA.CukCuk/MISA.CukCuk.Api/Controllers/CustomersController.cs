@@ -17,10 +17,10 @@ namespace MISA.CukCuk.Api.Controllers
 {
     public class CustomerController: BaseEntityController<Customer>
     {
-        IBaseService<Customer> _baseService;
-        public CustomerController(IBaseService<Customer> baseService):base(baseService)
+        ICustomerService _customerService;
+        public CustomerController(ICustomerService customerService):base(customerService)
         {
-            _baseService = baseService;
+            _customerService = customerService;
         }
     }
 

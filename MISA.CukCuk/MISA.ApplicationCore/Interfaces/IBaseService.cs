@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MISA.ApplicationCore.Entities;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -13,9 +14,9 @@ namespace MISA.ApplicationCore.Interfaces
         /// CreatedBy: HTTrang(13/01/2021)
         IEnumerable<TEntity> GetEntities();
         TEntity GetEntityById(Guid entityId);
-        int Add(TEntity entity);
-        int Update(TEntity cuentitystomer);
-        int Delete(Guid entityId);
+        ServiceResult Add(TEntity entity);
+        ServiceResult Update(TEntity cuentitystomer);
+        ServiceResult Delete(Guid entityId);
         TEntity GetEntityByCode(string entityCode);
     }
 }

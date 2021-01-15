@@ -58,9 +58,23 @@ namespace MISA.CukCuk.Api.Controllers
 
         // PUT api/<ValuesController>/5
         [HttpPut("{id}")]
-        public IActionResult Put(int id, [FromBody] string value)
+        public IActionResult Put([FromRoute]string id, [FromBody] TEntity entity)
         {
-            return Ok(1);
+            var keyProperty = entity.GetType().GetProperty($"{typeof(TEntity).Name}Id");
+            if(keyProperty.PropertyType == typeof(Guid))
+            {
+                keyProperty.SetValue(entity, Guid.Parse(id));
+            }
+            else if (keyProperty.PropertyType == typeof(int))
+            {
+                keyProperty.SetValue(entity, int.Parse(id));
+            }
+            else
+            {
+                keyProperty.SetValue(entity, id);
+            }
+            var rowEffects = _baseService.Update(entity);
+            return Ok(rowEffects);
         }
 
         // DELETE api/<ValuesController>/5
