@@ -32,11 +32,6 @@ namespace MISA.CukCuk.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            //add Midderware xửa lý việc mapping data với kiểu dữ liệu Guid
-            //SqlMapper.AddTypeHandler(new MySqlGuidTypeHandler());
-            //SqlMapper.RemoveTypeMap(typeof(Guid));
-            //SqlMapper.RemoveTypeMap(typeof(Guid?));
-            //config DI
             services.AddScoped(typeof(IBaseService<>), typeof(BaseService<>));
             services.AddScoped(typeof(IBaseRepository<>), typeof(BaseReponsitory<>));
             services.AddScoped<ICustomerRepository, CustomerRepository>();

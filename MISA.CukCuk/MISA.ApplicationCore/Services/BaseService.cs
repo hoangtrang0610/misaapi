@@ -82,7 +82,12 @@ namespace MISA.ApplicationCore.Services
             foreach(var property in properties)
             {
                 var propertyValue = property.GetValue(entity);
-                var displayName = property.GetCustomAttributes(typeof(DisplayNameAttribute), true);
+                var displayName = string.Empty;
+                var displayNameAttributes = property.GetCustomAttributes(typeof(DisplayName), true);
+                if(displayNameAttributes.Length > 0)
+                {
+                    displayName = (displayNameAttributes[0] as DisplayName).Name;
+                }
                 //Kiểm tra xem có attribute cần phải validate không
                 if (property.IsDefined(typeof(Requied), false))
                 {
@@ -90,10 +95,10 @@ namespace MISA.ApplicationCore.Services
                     if(propertyValue == null)
                     {
                         isValidate = false;
-                        mesArrayError.Add($"Thông tin {displayName} không được phép để trống.");
+                        mesArrayError.Add(string.Format(Properties.Resources.Msg_NotNull, displayName));
                         _serviceResult.Data = mesArrayError;
                         _serviceResult.MISACode = Enums.MISACode.NotValid;
-                        _serviceResult.Messenger = "Dữ liệu không hợp lệ";
+                        _serviceResult.Messenger = Properties.Resources.Msg_IsNotValid;
                     }
                 }
                 
@@ -105,13 +110,42 @@ namespace MISA.ApplicationCore.Services
                     if(entityDuplicate != null)
                     {
                         isValidate = false;
-                        _serviceResult.Data = $"Thông tin {displayName} đã có trên hệ thống.";
+                        mesArrayError.Add(string.Format(Properties.Resources.Msg_Duplicate, displayName));
                         _serviceResult.MISACode = Enums.MISACode.NotValid;
-                        _serviceResult.Messenger = "Dữ liệu không hợp lệ";
+                        _serviceResult.Messenger = Properties.Resources.Msg_IsNotValid;
+                    }
+                }
+
+                if (property.IsDefined(typeof(MaxLength), false))
+                {
+                    //Lấy độ dài đã khai báo
+                    var attributeMaxLength = property.GetCustomAttributes(typeof(MaxLength), true)[0];
+                    var length = (attributeMaxLength as MaxLength).Value;
+                    var msg = (attributeMaxLength as MaxLength).ErrorMsg;
+                    if(propertyValue.ToString().Trim().Length > length)
+                    {
+                        isValidate = false;
+                        mesArrayError.Add(msg??$"thông tin này quá {length} ký tự cho phép");
+                        _serviceResult.MISACode = Enums.MISACode.NotValid;
+                        _serviceResult.Messenger = Properties.Resources.Msg_IsNotValid;
                     }
                 }
             }
+            _serviceResult.Data = mesArrayError;
+            if (isValidate == true)
+                isValidate = ValidateCustomer(entity);
             return isValidate;
+        }
+
+        /// <summary>
+        /// Hàm thực hiện kiểm tra dữ liệu/ nghiệp vụ tùy chỉnh
+        /// </summary>
+        /// <param name="entity"></param>
+        /// <returns></returns>
+        /// CreatedBy: HTTrang(16/01/2021)
+        protected virtual bool ValidateCustomer(TEntity entity)
+        {
+            return true;
         }
     }
 }

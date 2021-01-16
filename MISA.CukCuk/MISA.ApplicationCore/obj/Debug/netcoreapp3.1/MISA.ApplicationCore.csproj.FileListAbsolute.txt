@@ -21,3 +21,5 @@ C:\Users\httrang\Desktop\misaapi\MISA.CukCuk\MISA.ApplicationCore\obj\Debug\netc
 C:\Users\httrang\Desktop\misaapi\MISA.CukCuk\MISA.ApplicationCore\bin\Debug\netcoreapp3.1\MISA.ApplicationCore.deps.json
 C:\Users\httrang\Desktop\misaapi\MISA.CukCuk\MISA.ApplicationCore\bin\Debug\netcoreapp3.1\MISA.ApplicationCore.dll
 C:\Users\httrang\Desktop\misaapi\MISA.CukCuk\MISA.ApplicationCore\bin\Debug\netcoreapp3.1\MISA.ApplicationCore.pdb
+C:\Users\httrang\Desktop\misaapi\MISA.CukCuk\MISA.ApplicationCore\obj\Debug\netcoreapp3.1\MISA.ApplicationCore.Properties.Resources.resources
+C:\Users\httrang\Desktop\misaapi\MISA.CukCuk\MISA.ApplicationCore\obj\Debug\netcoreapp3.1\MISA.ApplicationCore.csproj.GenerateResource.cache

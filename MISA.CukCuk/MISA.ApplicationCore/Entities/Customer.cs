@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -35,6 +34,8 @@ namespace MISA.ApplicationCore.Entities
         /// </summary>
         [Requied]
         [DisplayName("Mã khách hàng")]
+        [CheckDupplicate]
+        [MaxLength(10, "Mã khách hàng không quá 10 ký tự")]
         public string CustomerCode { get; set; }
 
         /// <summary>
@@ -71,6 +72,8 @@ namespace MISA.ApplicationCore.Entities
         /// <summary>
         /// Số điện thoại
         /// </summary>
+        [Requied]
+        [DisplayName("Số điện thoại")]
         public string PhoneNumber { get; set; }
 
         /// <summary>

@@ -13,7 +13,7 @@ using System.Text;
 
 namespace MISA.Infrastructure
 {
-    public class BaseReponsitory<TEntity> : IBaseRepository<TEntity> where TEntity:BaseEntity
+    public class BaseReponsitory<TEntity> : IBaseRepository<TEntity>, IDisposable where TEntity:BaseEntity
     {
         #region DECLARE
         IConfiguration _configuration;
@@ -38,9 +38,16 @@ namespace MISA.Infrastructure
             return rowAffects;
         }
 
-        public int Delete(Guid customerId)
+        public int Delete(Guid emloyeeId)
         {
-            throw new NotImplementedException();
+            var res = 0;
+            _dbConnection.Open();
+            using(var transaction = _dbConnection.BeginTransaction())
+            {
+                res = _dbConnection.Execute($"DELETE FROM {_tableName} WHERE {_tableName}Id = '{emloyeeId.ToString()}'");
+                transaction.Commit();
+            }
+            return res;
         }
 
         public IEnumerable<TEntity> GetEntities()
@@ -48,6 +55,15 @@ namespace MISA.Infrastructure
             //Kết nối tới CSDL
             //Khởi tạo các commandText:
             var entities = _dbConnection.Query<TEntity>($"Select * from {_tableName}", commandType: CommandType.Text);
+            //Trả về dữ liệu
+            return entities;
+        }
+
+        public IEnumerable<TEntity> GetEntities(string storeName)
+        {
+            //Kết nối tới CSDL
+            //Khởi tạo các commandText:
+            var entities = _dbConnection.Query<TEntity>("storeName", commandType: CommandType.StoredProcedure);
             //Trả về dữ liệu
             return entities;
         }
@@ -120,6 +136,14 @@ namespace MISA.Infrastructure
             else return null;
             var entityReturn = _dbConnection.Query<TEntity>(query, commandType: CommandType.Text).FirstOrDefault();
             return entityReturn;
+        }
+
+        public void Dispose()
+        {
+            if(_dbConnection.State == ConnectionState.Open)
+            {
+                _dbConnection.Close();
+            }
         }
     }
 }

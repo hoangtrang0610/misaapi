@@ -14,6 +14,8 @@ namespace MISA.ApplicationCore.Interfaces
         /// <returns>Dánh sách khách hàng</returns>
         /// CreatedBy: HTTrang(13/01/2021)
         IEnumerable<TEntity> GetEntities();
+        IEnumerable<TEntity> GetEntities(string storename);
+
         TEntity GetEntityById(Guid entityId);
         int Add(TEntity entity);
         int Update(TEntity cuentitystomer);
