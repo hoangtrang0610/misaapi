@@ -116,3 +116,6 @@ C:\Users\httrang\Desktop\misaapi\MISA.CukCuk\MISA.CukCuk.Api\obj\Debug\net5.0\MI
 C:\Users\httrang\Desktop\misaapi\MISA.CukCuk\MISA.CukCuk.Api\obj\Debug\net5.0\ref\MISA.CukCuk.Api.dll
 C:\Users\httrang\Desktop\misaapi\MISA.CukCuk\MISA.CukCuk.Api\obj\Debug\net5.0\MISA.CukCuk.Api.pdb
 C:\Users\httrang\Desktop\misaapi\MISA.CukCuk\MISA.CukCuk.Api\obj\Debug\net5.0\MISA.CukCuk.Api.genruntimeconfig.cache
+C:\Users\httrang\Desktop\misaapi\MISA.CukCuk\MISA.CukCuk.Api\bin\Debug\net5.0\Microsoft.AspNetCore.JsonPatch.dll
+C:\Users\httrang\Desktop\misaapi\MISA.CukCuk\MISA.CukCuk.Api\bin\Debug\net5.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
+C:\Users\httrang\Desktop\misaapi\MISA.CukCuk\MISA.CukCuk.Api\bin\Debug\net5.0\Newtonsoft.Json.Bson.dll

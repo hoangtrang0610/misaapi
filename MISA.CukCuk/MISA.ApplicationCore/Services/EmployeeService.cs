@@ -6,11 +6,13 @@ using System.Text;
 
 namespace MISA.ApplicationCore.Services
 {
-    public class EmployeeService : IEmployeeService
+    public class EmployeeService : BaseService<Employee>, IEmployeeService
     {
+        IBaseRepository<Employee> _baseRepository;
         IEmployeeRepository _employeeRepository;
-        public EmployeeService(IEmployeeRepository employeeRepository)
+        public EmployeeService(IBaseRepository<Employee> baseRepository, IEmployeeRepository employeeRepository) : base(baseRepository)
         {
+            _baseRepository = baseRepository;
             _employeeRepository = employeeRepository;
         }
         public ServiceResult AddEmployee(Employee employee)

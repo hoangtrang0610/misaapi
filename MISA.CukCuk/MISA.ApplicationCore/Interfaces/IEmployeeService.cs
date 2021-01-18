@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MISA.ApplicationCore.Interfaces
 {
-    public interface IEmployeeService
+    public interface IEmployeeService:IBaseService<Employee>
     {
         IEnumerable<Employee> GetEmployees();
         Employee GetEmployeeById(Guid employeeId);

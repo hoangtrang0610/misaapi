@@ -119,6 +119,10 @@
                 "NU1605"
               ]
             },
+            "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
+              "target": "Package",
+              "version": "[3.1.10, )"
+            },
             "MySql.Data": {
               "target": "Package",
               "version": "[8.0.22, )"

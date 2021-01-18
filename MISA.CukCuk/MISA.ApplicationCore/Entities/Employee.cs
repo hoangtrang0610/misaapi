@@ -8,7 +8,7 @@ namespace MISA.ApplicationCore.Entities
     /// Thông tin nhân viên
     /// </summary>
     /// CreatedBy: HTTrang(14/01/2020)
-    public class Employee
+    public class Employee:BaseEntity
     {
         public Guid EmployeeId { get; set; }
         public string FullName { get; set; }

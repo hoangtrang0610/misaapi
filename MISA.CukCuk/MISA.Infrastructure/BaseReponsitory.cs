@@ -13,7 +13,7 @@ using System.Text;
 
 namespace MISA.Infrastructure
 {
-    public class BaseReponsitory<TEntity> : IBaseRepository<TEntity>, IDisposable where TEntity:BaseEntity
+    public class BaseReponsitory<TEntity> : IBaseRepository<TEntity>, IDisposable where TEntity : BaseEntity
     {
         #region DECLARE
         IConfiguration _configuration;
@@ -30,19 +30,34 @@ namespace MISA.Infrastructure
         }
         public int Add(TEntity entity)
         {
-            //Khởi tạo kết nối với Db:
-            var parameters = MappingDbType(entity);
-            //Thực thi commandText
-            var rowAffects = _dbConnection.Execute($"Proc_Insert{_tableName}", parameters, commandType: CommandType.StoredProcedure);
-            //trả về kết quả(số bản ghi thêm mới được)
+            var rowAffects = 0;
+            _dbConnection.Open();
+            using (var transaction = _dbConnection.BeginTransaction())
+            {
+                try
+                {
+                    var parameters = MappingDbType(entity);
+                    //Thực hiện thêm khách hàng
+                    rowAffects = _dbConnection.Execute($"Proc_Insert{_tableName}", parameters, commandType: CommandType.StoredProcedure);
+                    transaction.Commit();
+                }
+                catch (Exception ex)
+                {
+
+                    transaction.Rollback();
+                }
+
+            }
+            //trả về số bản ghi thêm mới được
             return rowAffects;
+
         }
 
         public int Delete(Guid emloyeeId)
         {
             var res = 0;
             _dbConnection.Open();
-            using(var transaction = _dbConnection.BeginTransaction())
+            using (var transaction = _dbConnection.BeginTransaction())
             {
                 res = _dbConnection.Execute($"DELETE FROM {_tableName} WHERE {_tableName}Id = '{emloyeeId.ToString()}'");
                 transaction.Commit();
@@ -105,7 +120,8 @@ namespace MISA.Infrastructure
                 {
                     parameters.Add($"@{propertyName}", propertyValue, DbType.String);
                 }
-                else if(propertyType == typeof(bool) || propertyType == typeof(bool?)){
+                else if (propertyType == typeof(bool) || propertyType == typeof(bool?))
+                {
                     var dbValue = ((bool)propertyValue == true ? 1 : 0);
                     parameters.Add($"@{propertyName}", propertyValue, DbType.Int32);
 
@@ -140,7 +156,7 @@ namespace MISA.Infrastructure
 
         public void Dispose()
         {
-            if(_dbConnection.State == ConnectionState.Open)
+            if (_dbConnection.State == ConnectionState.Open)
             {
                 _dbConnection.Close();
             }

@@ -20,7 +20,11 @@ namespace MISA.ApplicationCore.Enums
         /// <summary>
         /// Thành công
         /// </summary>
-        Success = 200
+        Success = 200,
+        /// <summary>
+        /// Lỗi exception
+        /// </summary>
+        Exception = 901
     }
     /// <summary>
     /// Xacs định trạng thái của object
