@@ -6,49 +6,39 @@ using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
 
 namespace MISA.Infrastructure
 {
-    public class EmployeeRepository : IEmployeeRepository
+    public class EmployeeRepository :BaseReponsitory<Employee>, IEmployeeRepository
     {
-        #region DECLARE
-        IConfiguration _configuration;
-        string _connectionString = string.Empty;
-        IDbConnection _dbConnection = null;
-        #endregion
-        public EmployeeRepository(IConfiguration configuration)
+    
+        public EmployeeRepository(IConfiguration configuration) : base(configuration)
         {
-            _configuration = configuration;
-            _connectionString = _configuration.GetConnectionString("MISACukCukConnectionStrings");
-            _dbConnection = new MySqlConnection(_connectionString);
-        }
-        public int AddEmployee(Employee employee)
-        {
-            throw new NotImplementedException();
+
         }
 
-        public int DeleteEmployee(Guid employeeId)
+        public Customer GetEmployeeByCode(string employeeCode)
         {
-            throw new NotImplementedException();
+            var customerDuplicate = _dbConnection.Query<Customer>($"select * from employee where EmployeeCode = '{employeeCode}'", commandType: CommandType.Text).FirstOrDefault();
+            return customerDuplicate;
         }
 
-        public Employee GetEmployeeByCode(string employeeCode)
+        public List<Employee> GetEmployeesFilter(string specs, Guid? departmentGroupId, Guid? positionGroupId)
         {
-            throw new NotImplementedException();
+            //built tham số đầu vào cho store:
+            var parameters = new DynamicParameters();
+            parameters.Add("@EmployeeCode", specs);
+            parameters.Add("@FullName", specs);
+            parameters.Add("@PhoneNumber", specs);
+            parameters.Add("@DepartmentGroupId", departmentGroupId);
+            parameters.Add("@PositionGroupId", positionGroupId);
+            var employees = _dbConnection.Query<Employee>("Proc_GetEmployeePaging", parameters, commandType: CommandType.StoredProcedure).ToList();
+            return null;
         }
 
-        public Employee GetEmployeeById(Guid employeeId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Employee> GetEmployees()
-        {
-            return _dbConnection.Query<Employee>("SELECT * FROM Employee", commandType:CommandType.Text);
-        }
-
-        public int UpdateEmployee(Employee employee)
+        Employee IEmployeeRepository.GetEmployeeByCode(string employeeCode)
         {
             throw new NotImplementedException();
         }

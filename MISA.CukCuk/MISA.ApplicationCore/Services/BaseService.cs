@@ -147,5 +147,10 @@ namespace MISA.ApplicationCore.Services
         {
             return true;
         }
+
+        public IEnumerable<Customer> GetEmployeesFilter(string specs, Guid? departmentGroupId, Guid? positionGroupId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

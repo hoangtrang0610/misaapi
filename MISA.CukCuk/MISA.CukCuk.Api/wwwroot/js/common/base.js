@@ -51,7 +51,7 @@ class BaseJS {
             $('option').empty();
             $.each(select, function (index, value) {
                 //lấy dữ liệu nhóm khách hàng:
-                var api = $(select).attr('api');
+                var api = $(select).attr('api/v1');
                 var fieldName = $(select).attr('fieldName');
                 var fieldValue = $(select).attr('fieldValue');
                 $('.loading').show();
@@ -252,8 +252,6 @@ class BaseJS {
             inputNotValids[0].focus();
             return;
         }
-
-
         //thu thập thông tin dữ liệu được nhập--> built thành object
         // lấy tất cả các control nhập liệu
         var inputs = $('input[fieldName], select[fieldName]');
@@ -273,7 +271,6 @@ class BaseJS {
             
         })
         console.log(entity);
-        return;
         var method = "POST";
         if (me.FormMode == 'Edit') {
             method = "PUT";

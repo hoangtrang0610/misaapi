@@ -1,4 +1,4 @@
-﻿.content {
+.content {
     position: absolute;
     top: 61px;
     left: 221px;
@@ -31,5 +31,7 @@
     /*paging-bar*/
     .content .paging-bar {
         height: 56px;
-        background-color: aqua;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }

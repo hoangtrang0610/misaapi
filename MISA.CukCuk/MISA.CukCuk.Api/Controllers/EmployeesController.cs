@@ -17,5 +17,10 @@ namespace MISA.CukCuk.Api.Controllers
         {
             _baseService = baseService;
         }
+        [HttpGet("filter")]
+        public IActionResult GetEmployeeFilter([FromQuery] string specs, [FromBody] Guid? departmentGroupId, Guid? positionGroupId)
+        {
+            return Ok(_baseService.GetEmployeesFilter(specs, departmentGroupId, positionGroupId));
+        }
     }
 }

@@ -18,5 +18,7 @@ namespace MISA.ApplicationCore.Interfaces
         ServiceResult Update(TEntity cuentitystomer);
         ServiceResult Delete(Guid entityId);
         TEntity GetEntityByCode(string entityCode);
+        IEnumerable<Customer> GetEmployeesFilter(string specs,Guid? departmentGroupId, Guid? positionGroupId);
+
     }
 }

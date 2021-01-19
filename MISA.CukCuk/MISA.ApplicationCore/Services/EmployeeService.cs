@@ -8,36 +8,30 @@ namespace MISA.ApplicationCore.Services
 {
     public class EmployeeService : BaseService<Employee>, IEmployeeService
     {
-        IBaseRepository<Employee> _baseRepository;
         IEmployeeRepository _employeeRepository;
-        public EmployeeService(IBaseRepository<Employee> baseRepository, IEmployeeRepository employeeRepository) : base(baseRepository)
+        public EmployeeService( IEmployeeRepository employeeRepository) : base(employeeRepository)
         {
-            _baseRepository = baseRepository;
             _employeeRepository = employeeRepository;
         }
-        public ServiceResult AddEmployee(Employee employee)
+
+        //public Employee GetEmployeeByCode(string employeeCode)
+        //{
+        //    throw new NotImplementedException();
+        //}
+
+        //public List<Employee> GetEmployeesFilter(string specs, Guid? departmentGroupId, Guid? positionGroupId)
+        //{
+        //    return _employeeRepository.GetEmployeesFilter(specs, departmentGroupId, positionGroupId);
+        //}
+
+        Employee IEmployeeService.GetEmployeeByCode(string employeeCode)
         {
             throw new NotImplementedException();
         }
 
-        public ServiceResult DeleteEmployee(Guid employeeId)
+        List<Employee> IEmployeeService.GetEmployeesFilter(string specs, Guid? departmentGroupId, Guid? positionGroupId)
         {
-            throw new NotImplementedException();
-        }
-
-        public Employee GetEmployeeById(Guid employeeId)
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEnumerable<Employee> GetEmployees()
-        {
-            return _employeeRepository.GetEmployees();
-        }
-
-        public ServiceResult UpdateEmployee(Employee employee)
-        {
-            throw new NotImplementedException();
+            return _employeeRepository.GetEmployeesFilter(specs, departmentGroupId, positionGroupId);
         }
     }
 }

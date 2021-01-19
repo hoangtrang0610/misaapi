@@ -5,19 +5,19 @@ using System.Text;
 
 namespace MISA.ApplicationCore.Interfaces
 {
-    public interface IEmployeeRepository
+    public interface IEmployeeRepository:IBaseRepository<Employee>
     {
-        /// <summary>
-        /// Lấy danh sách nhân viên
-        /// </summary>
-        /// <returns>Dánh sách khách hàng</returns>
-        /// CreatedBy: HTTrang(14/01/2021)
-        IEnumerable<Employee> GetEmployees();
-        Employee GetEmployeeById(Guid employeeId);
-        int AddEmployee(Employee employee);
-        int UpdateEmployee(Employee employee);
-        int DeleteEmployee(Guid employeeId);
         Employee GetEmployeeByCode(string employeeCode);
+        /// <summary>
+        /// lấy dữ liệu danh sách nhân viên theo các tiêu chí
+        /// </summary>
+        /// <param name="specs">theo mã, tên hoặc số điện thoại của nhân viên</param>
+        /// <param name="departmentGroupId">Id phòng ban</param>
+        /// <param name="positionGroupId">Id vị trí</param>
+        /// <returns>Danh sách nhân viên theo các tiêu chí</returns>
+        /// CreatedBy: HTTrang(199/01/2021)
+        List<Employee> GetEmployeesFilter(string specs, Guid? departmentGroupId, Guid? positionGroupId);
+        
 
     }
 }
