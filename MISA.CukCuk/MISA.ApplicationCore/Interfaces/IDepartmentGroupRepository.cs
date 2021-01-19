@@ -5,8 +5,7 @@ using System.Text;
 
 namespace MISA.ApplicationCore.Interfaces
 {
-    public interface ICustomerGroupRepository : IBaseRepository<CustomerGroup>
+    public interface IDepartmentGroupRepository:IBaseRepository<DepartmentGroup>
     {
-        
     }
 }

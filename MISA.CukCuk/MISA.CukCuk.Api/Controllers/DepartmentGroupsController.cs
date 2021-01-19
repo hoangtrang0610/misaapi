@@ -12,10 +12,10 @@ namespace MISA.CukCuk.Api.Controllers
  
     public class DepartmentGroupsController : BaseEntityController<DepartmentGroup>
     {
-        IBaseService<DepartmentGroup> _employeeService;
-        public DepartmentGroupsController(IBaseService<DepartmentGroup> employeeService) : base(employeeService)
+        IBaseService<DepartmentGroup> _baseService;
+        public DepartmentGroupsController(IBaseService<DepartmentGroup> baseService) : base(baseService)
         {
-            _employeeService = employeeService;
+            _baseService = baseService;
         }
     }
 }

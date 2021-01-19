@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace MISA.CukCuk.Api.Controllers
 {
-    public class CustomerGroupController : BaseEntityController<CustomerGroup>
+    public class CustomerGroupsController : BaseEntityController<CustomerGroup>
     {
-        ICustomerGroupService _customerGroupService;
+        IBaseService<CustomerGroup> _baseService;
 
-        public CustomerGroupController(ICustomerGroupService customerGroupService) : base(customerGroupService)
+        public CustomerGroupsController(IBaseService<CustomerGroup> baseService) : base(baseService)
         {
-            _customerGroupService = customerGroupService;
+            _baseService = baseService;
         }
     }
 }

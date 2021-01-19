@@ -266,11 +266,11 @@ class BaseJS {
                 if (this.checked) {
                     entity[propertyName] = value;
                 }
-                debugger;
+               
             } else {
                 entity[propertyName] = value;
             }
-            debugger;
+            
         })
         console.log(entity);
         return;
