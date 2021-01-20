@@ -27,15 +27,16 @@ namespace MISA.Infrastructure
 
         public List<Employee> GetEmployeesFilter(string specs, Guid? departmentGroupId, Guid? positionGroupId)
         {
+            var input = specs != null ? specs : string.Empty;
             //built tham số đầu vào cho store:
             var parameters = new DynamicParameters();
-            parameters.Add("@EmployeeCode", specs);
-            parameters.Add("@FullName", specs);
-            parameters.Add("@PhoneNumber", specs);
-            parameters.Add("@DepartmentGroupId", departmentGroupId);
-            parameters.Add("@PositionGroupId", positionGroupId);
+            parameters.Add("@EmployeeCode", input, DbType.String);
+            parameters.Add("@FullName", input, DbType.String);
+            parameters.Add("@PhoneNumber", input, DbType.String);
+            parameters.Add("@DepartmentGroupId", departmentGroupId, DbType.String);
+            parameters.Add("@PositionGroupId", positionGroupId, DbType.String);
             var employees = _dbConnection.Query<Employee>("Proc_GetEmployeePaging", parameters, commandType: CommandType.StoredProcedure).ToList();
-            return null;
+            return employees;
         }
 
         Employee IEmployeeRepository.GetEmployeeByCode(string employeeCode)

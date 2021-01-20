@@ -88,9 +88,11 @@ namespace MISA.Infrastructure
             throw new NotImplementedException();
         }
 
-        public TEntity GetEntityById(Guid customerId)
+        public TEntity GetEntityById(Guid entityId)
         {
-            throw new NotImplementedException();
+
+            var entities = _dbConnection.Query<TEntity>($"Select * from {_tableName} where {_tableName}Id = '{entityId.ToString()}'", commandType: CommandType.Text).FirstOrDefault();
+            return entities;
         }
 
         public int Update(TEntity entity)

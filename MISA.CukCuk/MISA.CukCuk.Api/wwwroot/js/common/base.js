@@ -11,7 +11,6 @@ class BaseJS {
 
     }
 
-
     /**
      * khởi tạo tất cả sự kiện cho các button 
      * 

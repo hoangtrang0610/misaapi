@@ -86,10 +86,17 @@
             <div class="filter-left">
                 <input class="icon-search input-search" type="text" style="width: 200px" placeholder="Tìm kiếm theo Mã, Tên khác" />
                 <!--<select>
-                    <option>Phòng đào tạo </option>
-                    <option>Phòng đào tạo </option>
-                    <option>Phòng đào tạo </option>
-                </select>-->
+        <option>Phòng đào tạo </option>
+        <option>Phòng đào tạo </option>
+        <option>Phòng đào tạo </option>
+    </select>-->
+                <div class="m-row">
+                    <div class="m-lable">Nhóm khách hàng</div>
+                    <div class="m-control">
+                        <select id="cbxCustomerGroup" fieldName="CustomerGroupName" fieldValue="CustomerGroupId" api="/api/customergroups">
+                        </select>
+                    </div>
+                </div>
             </div>
             <div class="filter-right">
                 <button id="btnRefresh" class="m-btn-refresh m-second-button"></button>
