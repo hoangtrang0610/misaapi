@@ -25,6 +25,10 @@ class BaseJS {
             $('#dialog').css('display', ' none');
         })
 
+        //sự kiện khi ấn nút Hủy
+        $('#btnCancel').click(function () {
+            $('#dialog').css('display', ' none');
+        })
 
         //load lại sự kiện khi  nhấn button nạp:
         $('#btnRefresh').click(function () {
@@ -45,23 +49,26 @@ class BaseJS {
         $('table tbody').on('dblclick', 'tr', function () {
             $(this).addClass('row-selected');
             //load form
-            //load dữ liệu cho các combobox 
-            var select = $('select[fieldName]');
-            $('option').empty();
-            $.each(select, function (index, value) {
-                //lấy dữ liệu nhóm khách hàng:
-                var api = $(select).attr('api/v1');
+
+            // load dữ liệu cho các combobox:
+            var select = $('option[fieldName]');
+            select.empty();
+            $.each(select, function (index, select) {
+                // lấy dữ liệu nhóm khách hàng:
+                var api = $(select).attr('api');
                 var fieldName = $(select).attr('fieldName');
                 var fieldValue = $(select).attr('fieldValue');
                 $('.loading').show();
                 $.ajax({
                     url: me.host + api,
-                    method: "GET"
+                    method: "GET",
+                    async: true
                 }).done(function (res) {
                     if (res) {
+                        console.log(res);
                         $.each(res, function (index, obj) {
                             var option = $(`<option value="${obj[fieldValue]}">${obj[fieldName]}</option>`);
-                            select.append(option);
+                            $(select).append(option);
                         })
                     }
                     $('.loading').hide();
@@ -69,6 +76,7 @@ class BaseJS {
                     $('.loading').hide();
                 })
             })
+            
 
             me.FormMode = 'Edit';
             //Lấy khóa chính của bản ghi:
@@ -160,7 +168,7 @@ class BaseJS {
         try {
             var colums = $('table thead th')
             var getDataUrl = this.getDataUrl;
-            
+
             $.ajax({
                 url: me.host + me.apiRouter,
                 method: "GET",
@@ -170,9 +178,18 @@ class BaseJS {
                     $(tr).data("recordId", obj.CustomerId);
                     //lấy thông tin dữ liệu sẽ map tương ứng với các cột
                     $.each(colums, function (index, th) {
-                        var td = $(`<td><div><span></span></div></td>`)
+                        var td = $(`<td><div><span></span></div></td>`);
+                        td.addClass("width");
                         var fieldName = $(th).attr('fieldname');
                         var value = obj[fieldName];
+                        if (fieldName == "Gender") {
+                            if (value == 0)
+                                value = "Nam";
+                            else if (value == 1)
+                                value = "Nữ";
+                            else value = "Khác";
+                        }
+
                         var formatType = $(th).attr('formatType');
                         switch (formatType) {
                             case "ddmmyyyy":
@@ -230,6 +247,49 @@ class BaseJS {
             }).fail(function (res) {
                 $('.loading').hide();
             })
+
+
+            ////load dữ liệu cho combobox phòng ban
+            //var select1 = $('select#cbxDepartmentGroup');
+            //select1.empty();
+            ////lấy dữ liệu các phòng ban:
+            //$('.loading').show();
+            //$.ajax({
+            //    url: me.host + "/api/v1/departmentgroups",
+            //    method: "GET"
+            //}).done(function (res) {
+            //    if (res) {
+            //        $.each(res, function (index, obj) {
+            //            var option = $(`<option value="${obj.departmentGroupId}">${obj.DepartmentGroupName}</option>`);
+            //            select1.append(option);
+            //        })
+            //    }
+            //    $('.loading').hide();
+            //}).fail(function (res) {
+            //    $('.loading').hide();
+            //})
+
+
+            ////load dữ liệu cho combobox vị trí
+            //var select2 = $('select#cbxPositionGroup');
+            //select2.empty();
+            ////lấy dữ liệu các vị trí:
+            //$('.loading').show();
+            //$.ajax({
+            //    url: me.host + "/api/v1/positiongroups",
+            //    method: "GET"
+            //}).done(function (res) {
+            //    if (res) {
+            //        $.each(res, function (index, obj) {
+            //            var option = $(`<option value="${obj.positionGroupId}">${obj.PositionGroupName}</option>`);
+            //            select2.append(option);
+            //        })
+            //    }
+            //    $('.loading').hide();
+            //}).fail(function (res) {
+            //    $('.loading').hide();
+            //})
+
         } catch (e) {
             console.log(e);
         }
@@ -263,11 +323,11 @@ class BaseJS {
                 if (this.checked) {
                     entity[propertyName] = value;
                 }
-               
+
             } else {
                 entity[propertyName] = value;
             }
-            
+
         })
         console.log(entity);
         var method = "POST";
@@ -294,4 +354,5 @@ class BaseJS {
             console.log(res);
         })
     }
+    
 }

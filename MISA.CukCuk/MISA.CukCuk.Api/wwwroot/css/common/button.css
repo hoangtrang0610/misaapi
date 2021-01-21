@@ -1,4 +1,4 @@
-﻿.m-btn{
+.m-btn{
     display: flex;
     align-items: center;
     background-color: #019160;
@@ -48,6 +48,11 @@
         background-repeat: no-repeat;
         background-position: center;
     }
+
+#btnCancel {
+    color: #000000;
+    background-color: #cccccc;
+}
 
 @font-face {
     font-family: 'GoogleSans-Regular';

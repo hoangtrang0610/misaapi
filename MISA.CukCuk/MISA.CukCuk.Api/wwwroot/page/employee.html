@@ -100,21 +100,22 @@
                 <table border="0" cellspacing="0" width="100%">
                     <thead>
                         <tr>
-                            <th fieldname="EmployeeCode">Mã nhân viên</th>
+                            <th fieldname="EmployeeCode" style="width: 50px">Mã nhân viên</th>
                             <th fieldname="FullName">Họ và tên</th>
-                            <th fieldname="DateOfBirth" formatType="ddmmyyyy">Ngày sinh</th>
                             <th fieldname="Gender">Giới tính</th>
-                            <th fieldname="IdentityNumber">Số CMND/ Căn cước</th>
+                            <th fieldname="DateOfBirth" formatType="ddmmyyyy" class="text-align-center">Ngày sinh</th>
+                            <th fieldname="PhoneNumber">Điện thoại</th>
+                            <th fieldname="Email">Email</th>
+                            <th fieldname="PositionGroupName">Chức vụ</th>
+                            <th fieldname="DepartmentGroupName">Phòng ban</th>
+                            <th fieldname="Salary" formatType="Money" class="text-align-right">Mức lương cơ bản</th>
+                            <th fieldname="WorkStatusName">Tình trạng công việc</th>
+
+                            <!--<th fieldname="IdentityNumber">Số CMND/ Căn cước</th>
                             <th fieldname="IdentityDate" formatType="ddmmyyyy">Ngày cấp CMND</th>
                             <th fieldname="IdentityPlace">Nơi cấp CMND</th>
-                            <th fieldname="Email">Email</th>
-                            <th fieldname="PhoneNumber">Số điện thoại</th>
-                            <th fieldname="PositionGroupId">Chức vụ</th>
-                            <th fieldname="DepartmentGroupId">Phòng ban</th>
                             <th fieldname="PersonalTaxCode">Mã số thuế cá nhân</th>
-                            <th fieldname="Salary" formatType="Money">Mức lương hiện tại</th>
-                            <th fieldname="JoinDate formatType=" ddmmyyyy"">Ngày gia nhập</th>
-                            <th fieldname="WorkStatusName">Tình trạng công việc</th>
+                            <th fieldname="JoinDate formatType=" ddmmyyyy"">Ngày gia nhập</th>-->
                         </tr>
                     </thead>
                     <tbody>
@@ -165,7 +166,7 @@
                         </div>
                         <div class="m-row">
                             <div class="m-lable">Mã nhân viên(<span class="text-color_red">*</span>)</div>
-                            <div class="m-control"><input id="txtCustomerCode" fieldname="CustomerCode" type="text" required autofocus /></div>
+                            <div class="m-control"><input id="txtCustomerCode" fieldname="CustomerCode" type="text" autofocus required /></div>
                         </div>
                         <div class="m-row">
                             <div class="m-lable">Ngày sinh</div>
@@ -190,7 +191,7 @@
                         <div class="m-row">
                             <div class="m-lable">Vị trí</div>
                             <div class="m-control">
-                                <select id="" fieldName="" fieldValue="" api="/api/positiongroups">
+                                <select id="cbxPositionGroup" fieldName="PositionGroupName" fieldValue="PositionGroupId" api="/api/positiongroups">
                                 </select>
                             </div>
                         </div>
@@ -229,18 +230,24 @@
                         <div class="m-row">
                             <div class="m-lable">Phòng ban</div>
                             <div class="m-control">
-                                <select id="" fieldName="" fieldValue="" api="/api/positiongroups">
+                                <select id="cbxDepartmentGroup" fieldName="DepartmentGroupName" fieldValue="DepartmentGroupId" api="/api/departmentgroups">
                                 </select>
                             </div>
                         </div>
                         <div class="m-row">
                             <div class="m-lable">Mức lương cơ bản</div>
-                            <div class="m-control"><input type="text" fieldname="" /></div>
+                            <div class="m-control">
+                                <input id="txtSalary" fieldname="Salary" type="text" style="text-align:right; padding-right: 56px">
+                                <span class="currency-for-input">(VNĐ)</span>
+                            </div>
                         </div>
                         <div class="m-row">
-                            <div class="m-lable">Tình trang công việc</div>
+                            <div class="m-lable">Tình trạng công việc</div>
                             <div class="m-control">
-                                <select id="" fieldName="" fieldValue="" api="/api/positiongroups">
+                                <select>
+                                    <option>Đang làm việc</option>
+                                    <option>Đã nghỉ hưu</option>
+                                    <option>Đang thử việc</option>
                                 </select>
                             </div>
                         </div>

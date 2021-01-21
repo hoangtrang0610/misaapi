@@ -32,3 +32,9 @@
     padding-bottom: 43px;
     padding-top: 74px;
 }
+.currency-for-input {
+    position: absolute;
+    right: 40px;
+    line-height: 40px;
+    font-style: italic;
+}

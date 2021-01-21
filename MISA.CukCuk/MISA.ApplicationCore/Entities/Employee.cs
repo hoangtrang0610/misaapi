@@ -11,13 +11,17 @@ namespace MISA.ApplicationCore.Entities
     public class Employee:BaseEntity
     {
         public Guid EmployeeId { get; set; }
+        public string EmployeeCode { get; set; }
         public string FullName { get; set; }
         public DateTime DateOfBirth { get; set; }
         public int? Gender { get; set; }
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public Guid? PositionGroupId { get; set; }
+        public string PositionGroupName { get; set; }
         public Guid? DepartmentGroupId { get; set; }
+        public string DepartmentGroupName { get; set; }
+
         public string PersonalTaxCode { get; set; }
         public string Salary { get; set; }
         public string JoinDate { get; set; }

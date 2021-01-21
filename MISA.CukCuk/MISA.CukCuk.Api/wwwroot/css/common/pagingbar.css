@@ -10,11 +10,12 @@
         border-radius: 50%;
         border: 1px solid #bbbbbb;
         margin: 5px;
+        cursor: pointer;
     }
 
         .paging-bar-navigation div:hover {
-            background-color: #019160;
-            color: #ffffff;
+            background-color: #ced6d3;
+           
         }
 
     .paging-bar-navigation i {
