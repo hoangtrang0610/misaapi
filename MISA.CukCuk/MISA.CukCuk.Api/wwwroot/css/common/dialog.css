@@ -30,7 +30,7 @@
     }
 
     .m-dialog .dialog-body {
-        padding: 0px 8px 24px 24px;
+        padding: 20px 8px 24px 24px;
     }
 
     .m-dialog .dialog-header .dialog-header-close {
@@ -81,8 +81,8 @@ input {
 }
 
 .dialog-img-content {
-    width: 180px;
-    height: 180px;
+    width: 160px;
+    height: 160px;
     background-image: url('../../content/img/default-avatar.png');
     background-size: contain;
     border: 1px solid #bbbbbb;
