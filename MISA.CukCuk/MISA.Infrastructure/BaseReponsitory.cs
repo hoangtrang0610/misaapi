@@ -69,7 +69,7 @@ namespace MISA.Infrastructure
         {
             //Kết nối tới CSDL
             //Khởi tạo các commandText:
-            var entities = _dbConnection.Query<TEntity>($"Select * from {_tableName}", commandType: CommandType.Text);
+            var entities = _dbConnection.Query<TEntity>($"Proc_Get{_tableName}s", commandType: CommandType.Text);
             //Trả về dữ liệu
             return entities;
         }

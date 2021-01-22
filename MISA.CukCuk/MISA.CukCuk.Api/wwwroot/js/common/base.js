@@ -51,34 +51,9 @@ class BaseJS {
             //load form
 
             // load dữ liệu cho các combobox:
-            var select = $('option[fieldName]');
-            select.empty();
-            $.each(select, function (index, select) {
-                // lấy dữ liệu nhóm khách hàng:
-                var api = $(select).attr('api');
-                var fieldName = $(select).attr('fieldName');
-                var fieldValue = $(select).attr('fieldValue');
-                $('.loading').show();
-                $.ajax({
-                    url: me.host + api,
-                    method: "GET",
-                    async: true
-                }).done(function (res) {
-                    if (res) {
-                        console.log(res);
-                        $.each(res, function (index, obj) {
-                            var option = $(`<option value="${obj[fieldValue]}">${obj[fieldName]}</option>`);
-                            $(select).append(option);
-                        })
-                    }
-                    $('.loading').hide();
-                }).fail(function (res) {
-                    $('.loading').hide();
-                })
-            })
-            
+            me.loadCombobox($('option[fieldName]'))
 
-            me.FormMode = 'Edit';
+          me.FormMode = 'Edit';
             //Lấy khóa chính của bản ghi:
             var recordId = $(this).data('recordId');
             me.recordId = recordId;
@@ -95,6 +70,7 @@ class BaseJS {
                 $.each(inputs, function (index, input) {
                     var propertyName = $(this).attr('fieldname');
                     var value = res[propertyName];
+                    console.log(value);
                     //lấy giá trị check box
                     if (propertyName == "Gender") {
                         if (res[propertyName] == "1") {
@@ -106,6 +82,12 @@ class BaseJS {
                             $('#rdFemale').prop("checked", true);
                         }
                     }
+                    //lấy ngày 
+                    if (propertyName == "DateOfBirth") {
+                        value = formatDate(value);
+                        $(this).attr('value', value);
+                    }
+
                     $(this).val(value);
                     //xét lại value checkbox như mặc định
                     $('#rdMale').val('1');
@@ -168,20 +150,20 @@ class BaseJS {
         try {
             var colums = $('table thead th')
             var getDataUrl = this.getDataUrl;
-
             $.ajax({
                 url: me.host + me.apiRouter,
                 method: "GET",
             }).done(function (res) {
                 $.each(res, function (index, obj) {
                     var tr = $(`<tr></tr>`);
-                    $(tr).data("recordId", obj.CustomerId);
+                    $(tr).data("recordId", obj.EmployeeId);
                     //lấy thông tin dữ liệu sẽ map tương ứng với các cột
                     $.each(colums, function (index, th) {
-                        var td = $(`<td><div><span></span></div></td>`);
+                        var td = $(`<td></td>`);
                         td.addClass("width");
                         var fieldName = $(th).attr('fieldname');
                         var value = obj[fieldName];
+                        //lấy dữ liệu với radio button
                         if (fieldName == "Gender") {
                             if (value == 0)
                                 value = "Nam";
@@ -189,7 +171,8 @@ class BaseJS {
                                 value = "Nữ";
                             else value = "Khác";
                         }
-
+                        
+                        //định dạng dữ liệu lấy ra
                         var formatType = $(th).attr('formatType');
                         switch (formatType) {
                             case "ddmmyyyy":
@@ -202,7 +185,6 @@ class BaseJS {
                                 break;
                             default:
                         }
-
                         td.append(value);
                         $(tr).append(td);
                     })
@@ -229,67 +211,9 @@ class BaseJS {
             $('#dialog').css('display', ' block');
             $('input:not(input[type="radio"])').val(null);
             //load dữ liệu cho các combobox 
-            var select = $('select#cbxCustomerGroup');
-            select.empty();
-            //lấy dữ liệu nhóm khách hàng:
-            $('.loading').show();
-            $.ajax({
-                url: me.host + "/api/v1/customergroups",
-                method: "GET"
-            }).done(function (res) {
-                if (res) {
-                    $.each(res, function (index, obj) {
-                        var option = $(`<option value="${obj.CustomerGroupId}">${obj.CustomerGroupName}</option>`);
-                        select.append(option);
-                    })
-                }
-                $('.loading').hide();
-            }).fail(function (res) {
-                $('.loading').hide();
-            })
-
-
-            ////load dữ liệu cho combobox phòng ban
-            //var select1 = $('select#cbxDepartmentGroup');
-            //select1.empty();
-            ////lấy dữ liệu các phòng ban:
-            //$('.loading').show();
-            //$.ajax({
-            //    url: me.host + "/api/v1/departmentgroups",
-            //    method: "GET"
-            //}).done(function (res) {
-            //    if (res) {
-            //        $.each(res, function (index, obj) {
-            //            var option = $(`<option value="${obj.departmentGroupId}">${obj.DepartmentGroupName}</option>`);
-            //            select1.append(option);
-            //        })
-            //    }
-            //    $('.loading').hide();
-            //}).fail(function (res) {
-            //    $('.loading').hide();
-            //})
-
-
-            ////load dữ liệu cho combobox vị trí
-            //var select2 = $('select#cbxPositionGroup');
-            //select2.empty();
-            ////lấy dữ liệu các vị trí:
-            //$('.loading').show();
-            //$.ajax({
-            //    url: me.host + "/api/v1/positiongroups",
-            //    method: "GET"
-            //}).done(function (res) {
-            //    if (res) {
-            //        $.each(res, function (index, obj) {
-            //            var option = $(`<option value="${obj.positionGroupId}">${obj.PositionGroupName}</option>`);
-            //            select2.append(option);
-            //        })
-            //    }
-            //    $('.loading').hide();
-            //}).fail(function (res) {
-            //    $('.loading').hide();
-            //})
-
+            me.loadCombobox();
+            me.loadCombobox($('select#cbxPositionGroup'));
+            me.loadCombobox($('select#cbxDepartmentGroup'));
         } catch (e) {
             console.log(e);
         }
@@ -315,8 +239,9 @@ class BaseJS {
         // lấy tất cả các control nhập liệu
         var inputs = $('input[fieldName], select[fieldName]');
         var entity = {};
+        
         $.each(inputs, function (index, input) {
-            var propertyName = $(this).attr('fieldname');
+            var propertyName = $(this).attr('fieldName');
             var value = $(this).val();
             //Check với trường hợp input là radio, thì chỉ lấy value của input có attribute checked:
             if ($(this).attr('type') == "radio") {
@@ -329,6 +254,7 @@ class BaseJS {
             }
 
         })
+        
         console.log(entity);
         var method = "POST";
         if (me.FormMode == 'Edit') {
@@ -347,12 +273,76 @@ class BaseJS {
             //+ẩn form chi tiết
             //+load lại dữ liệu  
         }).done(function (res) {
-            alert("Thêm thành công");
+            
+            //đưa ra thông báo cho người dùng
+            console.log(entity);
+            if (me.FormMode == 'Add') {
+                alert('Thêm thành công!');
+            } if (me.FormMode == 'Edit') {
+                alert('Cập nhật thành công!');
+            }
+            //$("#content-mess").text('Thêm thành công');
+            //$("#messenger").show();
+            //$(function () {
+            //    function show_popup() {
+            //        $("#messenger").hide();
+            //    };
+            //    window.setTimeout(show_popup, 5000)
+            //});
+            //ẩn form chi tiết
             $('#dialog').css('display', ' none');
             me.loadData();
         }).fail(function (res) {
             console.log(res);
         })
+      
     }
-    
+
+    btnDeleteOnClick() {
+        var me = this;
+        try {
+            var result = confirm("Bạn có chắc chắn muốn xóa?");
+            if (result) {
+                $.ajax({
+                    url: me.host + me.apiRouter + `/${me.recordId}`,
+                    method: "DELETE"
+                }).done(function (res) {
+                    alert('Xóa thành công!');
+                    $('#dialog').css('display', ' none');
+                    me.loadData();
+                }).fail(function (res) {
+
+                })
+            }
+        } catch (e) {
+
+        }
+    }
+
+    loadCombobox(select = $('select#cbxCustomerGroup')) {
+        var me = this;
+        select.empty();
+        $.each(select, function (index, select) {
+            // lấy dữ liệu nhóm khách hàng:
+            var api = $(select).attr('api');
+            var fieldName = $(select).attr('fieldId');
+            var fieldValue = $(select).attr('fieldValue');
+            $('.loading').show();
+            $.ajax({
+                url: me.host + api,
+                method: "GET",
+                async: true
+            }).done(function (res) {
+                if (res) {
+                    $.each(res, function (index, obj) {
+                        var option = $(`<option value="${obj[fieldValue]}">${obj[fieldName]}</option>`);
+                        $(select).append(option);
+                    })
+                }
+                $('.loading').hide();
+            }).fail(function (res) {
+                $('.loading').hide();
+            })
+        })
+    }
 }

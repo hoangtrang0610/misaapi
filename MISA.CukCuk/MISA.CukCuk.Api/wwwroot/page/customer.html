@@ -162,35 +162,35 @@
                     <div class="dialog-infor-box">
                         <div class="m-row">
                             <div class="m-lable">Mã khách hàng(<span class="text-color_red">*</span>)</div>
-                            <div class="m-control"><input id="txtCustomerCode" fieldname="CustomerCode" type="text" required/></div>
+                            <div class="m-control"><input id="txtCustomerCode" fieldName="CustomerCode" type="text" required/></div>
                         </div>
                         <div class="m-row">
                             <div class="m-lable">Mã thẻ thành viên(<span class="text-color_red">*</span>)</div>
-                            <div class="m-control"><input id="txtMemberCardCode" fieldname="MemberCardCode" type="text" required/></div>
+                            <div class="m-control"><input id="txtMemberCardCode" fieldName="MemberCardCode" type="text" required/></div>
                         </div>
                         <div class="m-row">
                             <div class="m-lable">Ngày sinh</div>
-                            <div class="m-control"><input id="dtDateOfBirth" fieldname="DateOfBirth" type="date" /></div>
+                            <div class="m-control"><input id="dtDateOfBirth" fieldName="DateOfBirth" type="date" /></div>
                         </div>
                     </div>
                     <div class="dialog-infor-box">
                         <div class="m-row">
                             <div class="m-lable">Họ và tên(<span class="text-color_red">*</span>)</div>
-                            <div class="m-control"><input id="txtFullName" fieldname="FullName" type="text" required/></div>
+                            <div class="m-control"><input id="txtFullName" fieldName="FullName" type="text" required/></div>
                         </div>
                         <div class="m-row">
                             <div class="m-lable">Nhóm khách hàng</div>
                             <div class="m-control">
-                                <select  id="cbxCustomerGroup" fieldName="CustomerGroupName" fieldValue="CustomerGroupId" api="/api/customergroups">
+                                <select  id="cbxCustomerGroup" fieldName="CustomerGroupId" fieldId="CustomerGroupName" fieldValue="CustomerGroupId" api="/api/v1/customergroups">
                                 </select>
                             </div>
                         </div>
                         <div class="m-row">
                             <div class="m-lable">Giới tính</div>
                             <div class="m-control gender" id="rdGender">
-                                <input type="radio" id="rdMale" name="gender" fieldname="Gender" value="1">
+                                <input type="radio" id="rdMale" name="gender" fieldName="Gender" value="1">
                                 <label for="male">Nam</label>
-                                <input type="radio" id="rdFemale" name="gender" fieldname="Gender" value="0">
+                                <input type="radio" id="rdFemale" name="gender" fieldName="Gender" value="0">
                                 <label for="female">Nữ</label>
                             </div>
                         </div>
@@ -200,21 +200,21 @@
                     <div class="dialog-infor_content-left">
                         <div class="m-row">
                             <div class="m-lable">Email</div>
-                            <div class="m-control"><input type="email" id="txtEmail" fieldname="Email" placeholder="example@domain.com"/></div>
+                            <div class="m-control"><input type="email" id="txtEmail" fieldName="Email" placeholder="example@domain.com"/></div>
                         </div>
                         <div class="m-row">
                             <div class="m-lable">Tên công ty</div>
-                            <div class="m-control"><input type="text" fieldname="CompanyName" /></div>
+                            <div class="m-control"><input type="text" fieldName="CompanyName" /></div>
                         </div>
                     </div>
                     <div class="dialog-infor_content-right">
                         <div class="m-row">
                             <div class="m-lable">Số điện thoại(<span class="text-color_red">*</span>)</div>
-                            <div class="m-control"><input type="text" id="txtPhoneNumber" fieldname="PhoneNumber" required/></div>
+                            <div class="m-control"><input type="text" id="txtPhoneNumber" fieldName="PhoneNumber" required/></div>
                         </div>
                         <div class="m-row">
                             <div class="m-lable">Mã số thuế</div>
-                            <div class="m-control"><input type="text" id="txtCompanyTaxCode" fieldname="CompanyTaxCode" placeholder="Mã số thuế của công ty"/></div>
+                            <div class="m-control"><input type="text" id="txtCompanyTaxCode" fieldName="CompanyTaxCode" placeholder="Mã số thuế của công ty"/></div>
                         </div>
                     </div>
 
@@ -223,7 +223,7 @@
                 <div class="dialog-address">
                     <div class="m-row">
                         <div class="m-lable">Địa chỉ</div>
-                        <div class="m-control"><input type="text" id="txtAddress" fieldname="Address" /></div>
+                        <div class="m-control"><input type="text" id="txtAddress" fieldName="Address" /></div>
                     </div>
                 </div>
 

@@ -4,20 +4,25 @@
  */
 
 function formatDate(date) {
-    date = new Date(date);
-    if (Number.isNaN(date.getTime())) {
-        return "";
+    if (date != null) {
+        date = new Date(date);
+        if (Number.isNaN(date.getTime())) {
+            return "";
+        } else {
+            var day = date.getDate(),
+                month = date.getMonth() + 1,
+                year = date.getFullYear();
+
+            day = day < 10 ? '0' + day : day;
+            month = day < 10 ? '0' + month : month;
+
+            return month + '/' + day + '/' + year;
+        }
+
     } else {
-        var day = date.getDate(),
-            month = date.getMonth() + 1,
-            year = date.getFullYear();
-
-        day = day < 10 ? '0' + day : day;
-        month = day < 10 ? '0' + month : month;
-
-        return day + '/' + month + '/' + year;
+        return "";
     }
-
+    
 }
 
 
@@ -36,3 +41,4 @@ function formatMoney(money) {
     }
 
 }
+

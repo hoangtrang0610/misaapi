@@ -11,7 +11,7 @@ namespace MISA.ApplicationCore.Interfaces
         /// <summary>
         /// Lấy toàn bộ dữ liệu
         /// </summary>
-        /// <returns>Dánh sách khách hàng</returns>
+        /// <returns>Danh sách</returns>
         /// CreatedBy: HTTrang(13/01/2021)
         IEnumerable<TEntity> GetEntities();
         IEnumerable<TEntity> GetEntities(string storename);
